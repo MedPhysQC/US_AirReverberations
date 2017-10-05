@@ -1,0 +1,68 @@
+{
+    "actions": {
+        "acqdatetime": {
+            "filters": {}, 
+            "params": {}
+        }, 
+        "header_series": {
+            "filters": {}, 
+            "params": {
+                "auto_suffix": false
+            }
+        }, 
+        "ocr_series": {
+            "filters": {}, 
+            "params": {
+                "OCR_probeID:type": "string", 
+                "OCR_probeID:xywh": "676;167;34;15", 
+                "auto_suffix": false, 
+                "ocr_threshold": 80, 
+                "ocr_zoom": 2
+            }
+        }, 
+        "qc_series": {
+            "filters": {}, 
+            "params": {
+                "auto_suffix": false, 
+                "cluster_fminsize": 5, 
+                "cluster_mode": "all_middle", 
+                "fitcircle_frac": 1, 
+                "hor_offset": 5, 
+                "sen_delta": 0.2, 
+                "sen_filter": 5, 
+                "signal_thresh": 25, 
+                "uni_delta": 0.3, 
+                "uni_depth": 5, 
+                "uni_filter": 5, 
+                "uni_start": 2, 
+                "ver_offset": 1
+            }
+        }
+    }, 
+    "comments": {
+        "author": "Pepijn van Horssen, VUmc", 
+        "creator": "generate_config_json.py version 20170925", 
+        "description": "US/AirReverberations module for ALOKAG8 G8", 
+        "params": {
+            "OCR_probeID:type": "contents of bounding box of OCR_probeID should be of this type", 
+            "OCR_probeID:xywh": "bounding box of probeID if specified, this will be used as identifier for values, else from dicom headers", 
+            "auto_suffix": "add a probename as suffix to all results (True)", 
+            "cluster_fminsize": "ignore clusters smaller than imwidth*imheight/fminsize", 
+            "cluster_mode": "mode of connected components analysis; either all_middle (def) or largest_only", 
+            "fitcircle_frac": "use only this central fraction for circle fitting", 
+            "hor_offset": "default lines to exclude from left and right when making profiles (10)", 
+            "ocr_threshold": "threshold on pixel values to remove background gradient (0)", 
+            "ocr_zoom": "zoom factor before ocr analysis (10)", 
+            "sen_delta": "a peak in sensitivity profile must be at least <fdelta>*(max-noise)", 
+            "sen_filter": "running average of this width for sensitivity data", 
+            "signal_thresh": "threshold on pixelvalues for reverberation patterns; use>0 for noisy data (0)", 
+            "uni_delta": "a dip in normalized reverb pattern must be at least <delta>", 
+            "uni_depth": "depth in mm of size of ROI for reverb pattern analysis from top of profile. (5)", 
+            "uni_filter": "running average of this width before peak detection", 
+            "uni_range_model": "method to determine y-range for uniformity profile. absolute/skip10pct/skip20pct/maxsenslimit (absolute)", 
+            "uni_start": "offset in mm to start of ROI for reverb pattern analysis from top of profile. (2)", 
+            "ver_offset": "default lines to exclude from top and bottom when making profiles (10)"
+        }, 
+        "version": "20170503"
+    }
+}
