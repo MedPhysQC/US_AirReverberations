@@ -13,39 +13,54 @@
         "ocr_series": {
             "filters": {}, 
             "params": {
-                "OCR_probeID:type": "string", 
-                "OCR_probeID:xywh": "676;167;34;15", 
+                "OCR_Gain:prefix": "Gn", 
+                "OCR_Gain:type": "float", 
+                "OCR_Gain:xywh": "4;200;75;19", 
+                "OCR_MechIndex:prefix": "MI", 
+                "OCR_MechIndex:type": "float", 
+                "OCR_MechIndex:xywh": "565;4;94;26", 
+                "OCR_TissueIndex:prefix": "TIS", 
+                "OCR_TissueIndex:type": "float", 
+                "OCR_TissueIndex:xywh": "565;30;94;26", 
                 "auto_suffix": false, 
-                "ocr_threshold": 80, 
-                "ocr_zoom": 2
+                "ocr_threshold": 0, 
+                "ocr_zoom": 10
             }
         }, 
         "qc_series": {
             "filters": {}, 
             "params": {
                 "auto_suffix": false, 
-                "cluster_fminsize": 5, 
+                "cluster_fminsize": 300.0, 
                 "cluster_mode": "all_middle", 
-                "fitcircle_frac": 1, 
-                "hor_offset": 5, 
-                "sen_delta": 0.2, 
+                "fitcircle_frac": 0.3333333333333333, 
+                "hor_offset": 3, 
+                "sen_delta": 0.1, 
                 "sen_filter": 5, 
-                "signal_thresh": 25, 
-                "uni_delta": 0.3, 
+                "signal_thresh": 0, 
+                "uni_delta": 0.05, 
                 "uni_depth": 5, 
                 "uni_filter": 5, 
+                "uni_range_model": "skip10pct", 
                 "uni_start": 2, 
-                "ver_offset": 1
+                "ver_offset": 2
             }
         }
     }, 
     "comments": {
-        "author": "Pepijn van Horssen, VUmc", 
-        "creator": "generate_config_json.py version 20170925", 
-        "description": "US/AirReverberations module for ALOKAG8 G8", 
+        "author": "Arnold Schilham, UMCU", 
+        "creator": "generate_config_json.py version 20180219", 
+        "description": "US/AirReverberations for Philips HD11", 
         "params": {
-            "OCR_probeID:type": "contents of bounding box of OCR_probeID should be of this type", 
-            "OCR_probeID:xywh": "bounding box of probeID if specified, this will be used as identifier for values, else from dicom headers", 
+            "OCR_Gain:prefix": "text in bounding box of OCR_Gain starts with this", 
+            "OCR_Gain:type": "contents minus prefix of bounding box of OCR_Gain should be of this type", 
+            "OCR_Gain:xywh": "x0;y0;width;height of bounding box of OCR_Gain", 
+            "OCR_MechIndex:prefix": "text in bounding box of OCR_MechIndex starts with this", 
+            "OCR_MechIndex:type": "contents minus prefix of bounding box of OCR_MechIndex should be of this type", 
+            "OCR_MechIndex:xywh": "x0;y0;width;height of bounding box of OCR_MechIndex", 
+            "OCR_TissueIndex:prefix": "text in bounding box of OCR_TissueIndex starts with this", 
+            "OCR_TissueIndex:type": "contents minus prefix of bounding box of OCR_TissueIndex should be of this type", 
+            "OCR_TissueIndex:xywh": "x0;y0;width;height of bounding box of OCR_TissueIndex", 
             "auto_suffix": "add a probename as suffix to all results (True)", 
             "cluster_fminsize": "ignore clusters smaller than imwidth*imheight/fminsize", 
             "cluster_mode": "mode of connected components analysis; either all_middle (def) or largest_only", 
@@ -63,6 +78,6 @@
             "uni_start": "offset in mm to start of ROI for reverb pattern analysis from top of profile. (2)", 
             "ver_offset": "default lines to exclude from top and bottom when making profiles (10)"
         }, 
-        "version": "20170503"
+        "version": "20170901"
     }
 }

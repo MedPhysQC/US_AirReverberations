@@ -1,8 +1,8 @@
 {
     "comments": {
         "author": "Arnold Schilham, UMCU", 
-        "creator": "generate_config_json.py version 20161221", 
-        "description": "US/AirReverberations module for Philips iU22"
+        "creator": "generate_config_json.py version 20180219", 
+        "description": "US/AirReverberations for Philips Epiq"
     }, 
     "results": {
         "AcquisitionDateTime": {

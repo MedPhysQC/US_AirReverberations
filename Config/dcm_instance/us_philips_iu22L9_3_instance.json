@@ -47,8 +47,8 @@
                 "cluster_fminsize": 300.0, 
                 "cluster_mode": "all_middle", 
                 "fitcircle_frac": 0.3333333333333333, 
-                "hor_offset": 2, 
-                "rev_bbox": "198;893;125;767", 
+                "hor_offset": 3, 
+                "rev_bbox": "217;876;125;767", 
                 "sen_delta": 0.1, 
                 "sen_filter": 5, 
                 "signal_thresh": 0, 
@@ -63,8 +63,8 @@
     }, 
     "comments": {
         "author": "Arnold Schilham, UMCU", 
-        "creator": "generate_config_json.py version 20170925", 
-        "description": "US/AirReverberations module for Philips iU22", 
+        "creator": "generate_config_json.py version 20180219", 
+        "description": "US/AirReverberations for Philips iU22", 
         "params": {
             "OCR_DynRange:type": "contents minus prefix of bounding box of OCR_DynRange should be of this type", 
             "OCR_DynRange:xywh": "x0;y0;width;height of bounding box of OCR_DynRange", 

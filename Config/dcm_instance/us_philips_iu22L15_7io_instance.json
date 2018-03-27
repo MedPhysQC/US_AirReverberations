@@ -13,29 +13,28 @@
         "ocr_series": {
             "filters": {}, 
             "params": {
-                "OCR_DynRange:prefix": "R", 
                 "OCR_DynRange:type": "float", 
-                "OCR_DynRange:xywh": "50;179;60;18", 
+                "OCR_DynRange:xywh": "28;179;35;19", 
                 "OCR_FrameRate:suffix": "Hz", 
                 "OCR_FrameRate:type": "float", 
-                "OCR_FrameRate:xywh": "11;76;79;20", 
+                "OCR_FrameRate:xywh": "46;77;78;20", 
                 "OCR_Gain:type": "float", 
-                "OCR_Gain:xywh": "21;159;27;18", 
+                "OCR_Gain:xywh": "14;159;28;19", 
                 "OCR_LUT:type": "string", 
                 "OCR_LUT:xywh": "959;78;36;17", 
                 "OCR_MechIndex:prefix": "MI", 
                 "OCR_MechIndex:type": "float", 
-                "OCR_MechIndex:xywh": "913;23;80;24", 
+                "OCR_MechIndex:xywh": "910;6;90;26", 
                 "OCR_PenResGen:type": "string", 
                 "OCR_PenResGen:xywh": "14;218;82;20", 
                 "OCR_Persistence:prefix": "P", 
                 "OCR_Persistence:type": "string", 
                 "OCR_Persistence:xywh": "14;200;82;20", 
                 "OCR_ResSpd:type": "string", 
-                "OCR_ResSpd:xywh": "11;97;59;20", 
+                "OCR_ResSpd:xywh": "14;97;59;20", 
                 "OCR_TissueIndex:prefix": "TIS", 
                 "OCR_TissueIndex:type": "float", 
-                "OCR_TissueIndex:xywh": "822;23;90;24", 
+                "OCR_TissueIndex:xywh": "824;6;86;26", 
                 "auto_suffix": false, 
                 "ocr_threshold": 0, 
                 "ocr_zoom": 10
@@ -48,7 +47,8 @@
                 "cluster_fminsize": 300.0, 
                 "cluster_mode": "all_middle", 
                 "fitcircle_frac": 0.3333333333333333, 
-                "hor_offset": 2, 
+                "hor_offset": 3, 
+                "rev_bbox": "198;893;125;767", 
                 "sen_delta": 0.1, 
                 "sen_filter": 5, 
                 "signal_thresh": 0, 
@@ -63,10 +63,9 @@
     }, 
     "comments": {
         "author": "Arnold Schilham, UMCU", 
-        "creator": "generate_config_json.py version 20170925", 
-        "description": "US/AirReverberations module for Philips Epiq", 
+        "creator": "generate_config_json.py version 20180219", 
+        "description": "US/AirReverberations for Philips iU22", 
         "params": {
-            "OCR_DynRange:prefix": "text in bounding box of OCR_DynRange starts with this", 
             "OCR_DynRange:type": "contents minus prefix of bounding box of OCR_DynRange should be of this type", 
             "OCR_DynRange:xywh": "x0;y0;width;height of bounding box of OCR_DynRange", 
             "OCR_FrameRate:suffix": "text in bounding box of OCR_FrameRate starts with this", 
@@ -96,6 +95,7 @@
             "hor_offset": "default lines to exclude from left and right when making profiles (10)", 
             "ocr_threshold": "threshold on pixel values to remove background gradient (0)", 
             "ocr_zoom": "zoom factor before ocr analysis (10)", 
+            "rev_bbox": "restrict reverberation pattern to bounding box xmin;xmax;ymin;ymax in px", 
             "sen_delta": "a peak in sensitivity profile must be at least <fdelta>*(max-noise)", 
             "sen_filter": "running average of this width for sensitivity data", 
             "signal_thresh": "threshold on pixelvalues for reverberation patterns; use>0 for noisy data (0)", 
@@ -106,11 +106,6 @@
             "uni_start": "offset in mm to start of ROI for reverb pattern analysis from top of profile. (2)", 
             "ver_offset": "default lines to exclude from top and bottom when making profiles (10)"
         }, 
-        "usage": [
-            "  \"OCR_xxx:prefix\": \"mm\" # text in bounding box of OCR_xxx starts with this and this should be stripped", 
-            "  \"OCR_xxx:suffix\": \"mm\" # text in bounding box of OCR_xxx ends with this and this should be stripped", 
-            "\n"
-        ], 
         "version": "20170907"
     }
 }

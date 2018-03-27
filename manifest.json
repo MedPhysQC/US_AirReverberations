@@ -1,26 +1,19 @@
 {
-    "configs": {
-        "CONFIG-0": {
-            "datatype": "dcm_instance",
-            "description": "epiq for US_AirReverberations",
-            "filename": "config_0_0.json",
-            "metafilename": "config_0_0.json",
-            "module": "MODULE-0",
-            "name": "epiq",
-            "origin": "user"
-        }
-    },
     "info": {
-        "dbversion": "20170428",
-        "magic": "wad-qc-export"
+        "dbversion": "20180209",
+        "magic": "wad-qc-factory"
     },
-    "modules": {
-        "MODULE-0": {
-            "description": "QCUS for US AirReverberations",
-            "executable": "QCUS_wadwrapper.py",
-            "folder": "module_0",
-            "name": "US_AirReverberations",
-            "origin": "factory"
-        }
+    "module": {
+        "description": "US AirReverberations",
+        "executable": "QCUS_wadwrapper.py",
+        "name": "US_AirReverberations",
+        "code": "python",
+        "dependencies": [
+            "numpy",
+            "pydicom",
+            "scipy",
+            "pyocr",
+            "matplotlib"
+        ]
     }
 }

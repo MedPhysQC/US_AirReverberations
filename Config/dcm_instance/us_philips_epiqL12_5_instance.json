@@ -48,8 +48,8 @@
                 "cluster_fminsize": 300.0, 
                 "cluster_mode": "all_middle", 
                 "fitcircle_frac": 0.3333333333333333, 
-                "hor_offset": 2, 
-                "rev_bbox": "152;870;68;767", 
+                "hor_offset": 3, 
+                "rev_bbox": "143;879;68;767", 
                 "sen_delta": 0.1, 
                 "sen_filter": 5, 
                 "signal_thresh": 0, 
@@ -64,8 +64,8 @@
     }, 
     "comments": {
         "author": "Arnold Schilham, UMCU", 
-        "creator": "generate_config_json.py version 20170925", 
-        "description": "US/AirReverberations module for Philips Epiq", 
+        "creator": "generate_config_json.py version 20180219", 
+        "description": "US/AirReverberations for Philips Epiq", 
         "params": {
             "OCR_DynRange:prefix": "text in bounding box of OCR_DynRange starts with this", 
             "OCR_DynRange:type": "contents minus prefix of bounding box of OCR_DynRange should be of this type", 
