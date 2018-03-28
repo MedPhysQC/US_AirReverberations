@@ -17,7 +17,8 @@
                 "OCR_probeID:xywh": "676;167;34;15", 
                 "auto_suffix": false, 
                 "ocr_threshold": 80, 
-                "ocr_zoom": 2
+                "ocr_zoom": 2, 
+                "rgbchannel": "B"
             }
         }, 
         "qc_series": {
@@ -28,6 +29,8 @@
                 "cluster_mode": "all_middle", 
                 "fitcircle_frac": 1, 
                 "hor_offset": 5, 
+                "rev_bbox": "223;547;139;524", 
+                "rgbchannel": "B", 
                 "sen_delta": 0.2, 
                 "sen_filter": 5, 
                 "signal_thresh": 25, 
@@ -42,7 +45,7 @@
     "comments": {
         "author": "Pepijn van Horssen, VUmc", 
         "creator": "generate_config_json.py version 20180219", 
-        "description": "US/AirReverberations for ALOKAG8 G8", 
+        "description": "US/AirReverberations for ALOKA G8 C15", 
         "params": {
             "OCR_probeID:type": "contents of bounding box of OCR_probeID should be of this type", 
             "OCR_probeID:xywh": "bounding box of probeID if specified, this will be used as identifier for values, else from dicom headers", 
@@ -53,6 +56,8 @@
             "hor_offset": "default lines to exclude from left and right when making profiles (10)", 
             "ocr_threshold": "threshold on pixel values to remove background gradient (0)", 
             "ocr_zoom": "zoom factor before ocr analysis (10)", 
+            "rev_bbox": "restrict reverberation pattern to bounding box xmin;xmax;ymin;ymax in px", 
+            "rgbchannel": "use this R-G-B channel (B)", 
             "sen_delta": "a peak in sensitivity profile must be at least <fdelta>*(max-noise)", 
             "sen_filter": "running average of this width for sensitivity data", 
             "signal_thresh": "threshold on pixelvalues for reverberation patterns; use>0 for noisy data (0)", 
@@ -63,6 +68,6 @@
             "uni_start": "offset in mm to start of ROI for reverb pattern analysis from top of profile. (2)", 
             "ver_offset": "default lines to exclude from top and bottom when making profiles (10)"
         }, 
-        "version": "20170503"
+        "version": "20180328"
     }
 }

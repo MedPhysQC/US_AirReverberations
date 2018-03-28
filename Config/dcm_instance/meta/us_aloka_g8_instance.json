@@ -2,7 +2,7 @@
     "comments": {
         "author": "Pepijn van Horssen, VUmc", 
         "creator": "generate_config_json.py version 20180219", 
-        "description": "US/AirReverberations for ALOKAG8 G8"
+        "description": "US/AirReverberations for ALOKA G8 C15"
     }, 
     "results": {
         "AcquisitionDateTime": {

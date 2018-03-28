@@ -78,7 +78,7 @@ def setup_series(inputfile, params, headers_only, for_action):
     # 1. Set runtime parameters
     # 2. Check data format
     rgbchannel = params.get('rgbchannel', 'B')
-    dcmInfile,pixeldataIn,dicomMode = wadwrapper_lib.prepareInput(inputfile, headers_only=headers_only, logTag=logTag(), rgbchannel=rgbchannel)
+    dcmInfile, pixeldataIn, dicomMode = wadwrapper_lib.prepareInput(inputfile, headers_only=headers_only, logTag=logTag(), rgbchannel=rgbchannel)
 
     # 3. Build and populate qcstructure
     qclib = QCUS_lib.US_QC(guimode=False)
@@ -429,7 +429,7 @@ if __name__ == "__main__":
 
     #label = instance.DeviceSerialNumber+'__'+''.join(instance.TransducerData).strip()
     writeimages(cs, ocr_rois, idname)
-
+    
     results.write()
 
     if error:
