@@ -41,6 +41,7 @@ Warning: THIS MODULE EXPECTS PYQTGRAPH DATA: X AND Y ARE TRANSPOSED!
 TODO:
     o Maybe put hard threshold on peak value for uniformity (is normalized, so why not?!)
 Changelog:
+    20180731: fix error ValueError: assignment destination is read-only for work[cs.pixeldataIn ==0] = 1
     20170912: tried sensitivity profile analysis (per column, calculate depth relative to accepted depth; 
               then calculate COV skew kurt); does not help; removed again.
               tried combining DipFrac etc to 0-10+90-100, 10-30+70-90; does not help; removed again.
@@ -72,7 +73,7 @@ Changelog:
     20150416: Sensitivity analysis and uniformity analysis
     20150410: Initial version
 """
-__version__ = '20170912'
+__version__ = '20180731'
 __author__ = 'aschilham, pvanhorsen'
 
 import copy
@@ -1057,7 +1058,7 @@ class US_QC:
         # convert to 8-bit palette mapped image with lowest palette value used = 1
         if what == 'overview':
             # first the base image
-            work = cs.pixeldataIn
+            work = np.array(cs.pixeldataIn)
             work[cs.pixeldataIn ==0] = 1
             im = scipy.misc.toimage(work.transpose(),low=1, pal=pal) # MODULE EXPECTS PYQTGRAPH DATA: X AND Y ARE TRANSPOSED!
 
