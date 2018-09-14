@@ -13,30 +13,50 @@
         "ocr_series": {
             "filters": {}, 
             "params": {
-                "OCR_DynRange:prefix": "R", 
-                "OCR_DynRange:type": "float", 
-                "OCR_DynRange:xywh": "50;179;60;18", 
-                "OCR_FrameRate:suffix": "Hz", 
-                "OCR_FrameRate:type": "float", 
-                "OCR_FrameRate:xywh": "11;76;79;20", 
-                "OCR_Gain:type": "float", 
-                "OCR_Gain:xywh": "21;159;27;18", 
-                "OCR_LUT:type": "string", 
-                "OCR_LUT:xywh": "959;78;36;17", 
-                "OCR_MechIndex:prefix": "MI", 
-                "OCR_MechIndex:type": "float", 
-                "OCR_MechIndex:xywh": "913;23;80;24", 
-                "OCR_PenResGen:type": "string", 
-                "OCR_PenResGen:xywh": "14;218;82;20", 
-                "OCR_Persistence:prefix": "P", 
-                "OCR_Persistence:type": "string", 
-                "OCR_Persistence:xywh": "14;200;82;20", 
-                "OCR_ResSpd:type": "string", 
-                "OCR_ResSpd:xywh": "11;97;59;20", 
-                "OCR_TissueIndex:prefix": "TIS", 
-                "OCR_TissueIndex:type": "float", 
-                "OCR_TissueIndex:xywh": "822;23;90;24", 
                 "auto_suffix": false, 
+                "ocr_regions": {
+                    "OCR_DynRange": {
+                        "prefix": "R", 
+                        "type": "float", 
+                        "xywh": "50;179;60;18"
+                    }, 
+                    "OCR_FrameRate": {
+                        "suffix": "Hz", 
+                        "type": "float", 
+                        "xywh": "11;76;79;20"
+                    }, 
+                    "OCR_Gain": {
+                        "type": "float", 
+                        "xywh": "21;159;27;18"
+                    }, 
+                    "OCR_LUT": {
+                        "type": "string", 
+                        "xywh": "959;78;36;17"
+                    }, 
+                    "OCR_MechIndex": {
+                        "prefix": "MI", 
+                        "type": "float", 
+                        "xywh": "913;23;80;24"
+                    }, 
+                    "OCR_PenResGen": {
+                        "type": "string", 
+                        "xywh": "14;218;82;20"
+                    }, 
+                    "OCR_Persistence": {
+                        "prefix": "P", 
+                        "type": "string", 
+                        "xywh": "14;200;82;20"
+                    }, 
+                    "OCR_ResSpd": {
+                        "type": "string", 
+                        "xywh": "11;97;59;20"
+                    }, 
+                    "OCR_TissueIndex": {
+                        "prefix": "TIS", 
+                        "type": "float", 
+                        "xywh": "822;23;90;24"
+                    }
+                }, 
                 "ocr_threshold": 0, 
                 "ocr_zoom": 10
             }
@@ -68,8 +88,12 @@
         "creator": "generate_config_json.py version 20180912", 
         "description": "US/AirReverberations for Philips Epiq", 
         "usage": [
-            "  \"OCR_xxx:prefix\": \"mm\" # text in bounding box of OCR_xxx starts with this and this should be stripped", 
-            "  \"OCR_xxx:suffix\": \"mm\" # text in bounding box of OCR_xxx ends with this and this should be stripped", 
+            "  \"OCR_xxx\": \"xywh\": \"10;30;50;25\" # x;y;width;height of bounding box of OCR_xxx", 
+            "  \"OCR_xxx\": \"prefix\": \"TI\" # text in bounding box of OCR_xxx starts with this and this should be stripped", 
+            "  \"OCR_xxx\": \"suffix\": \"mm\" # text in bounding box of OCR_xxx ends with this and this should be stripped", 
+            "  \"OCR_xxx\": \"type\": \"float\" # after stripping prefix and suffix, text should be converted to this data type", 
+            "\n", 
+            "  If \"OCR_probeID\" is specified, OCR will be used to find an identifier for values, info from the dicom headers is used", 
             "\n"
         ], 
         "version": "20170907"
@@ -85,30 +109,50 @@
         }, 
         "ocr_series": {
             "params": {
-                "OCR_DynRange:prefix": "text in bounding box of OCR_DynRange starts with this", 
-                "OCR_DynRange:type": "contents minus prefix of bounding box of OCR_DynRange should be of this type", 
-                "OCR_DynRange:xywh": "x0;y0;width;height of bounding box of OCR_DynRange", 
-                "OCR_FrameRate:suffix": "text in bounding box of OCR_FrameRate starts with this", 
-                "OCR_FrameRate:type": "contents minus prefix of bounding box of OCR_FrameRate should be of this type", 
-                "OCR_FrameRate:xywh": "x0;y0;width;height of bounding box of OCR_FrameRate", 
-                "OCR_Gain:type": "contents minus prefix of bounding box of OCR_Gain should be of this type", 
-                "OCR_Gain:xywh": "x0;y0;width;height of bounding box of OCR_Gain", 
-                "OCR_LUT:type": "contents minus prefix of bounding box of OCR_PenResGen should be of this type", 
-                "OCR_LUT:xywh": "x0;y0;width;height of bounding box of OCR_PenResGen", 
-                "OCR_MechIndex:prefix": "text in bounding box of OCR_MechIndex starts with this", 
-                "OCR_MechIndex:type": "contents minus prefix of bounding box of OCR_MechIndex should be of this type", 
-                "OCR_MechIndex:xywh": "x0;y0;width;height of bounding box of OCR_MechIndex", 
-                "OCR_PenResGen:type": "contents minus prefix of bounding box of OCR_PenResGen should be of this type", 
-                "OCR_PenResGen:xywh": "x0;y0;width;height of bounding box of OCR_PenResGen", 
-                "OCR_Persistence:prefix": "text in bounding box of OCR_Persistence starts with this", 
-                "OCR_Persistence:type": "contents minus prefix of bounding box of OCR_Persistence should be of this type", 
-                "OCR_Persistence:xywh": "x0;y0;width;height of bounding box of OCR_Persistence", 
-                "OCR_ResSpd:type": "contents minus prefix of bounding box of OCR_ResSpd should be of this type", 
-                "OCR_ResSpd:xywh": "x0;y0;width;height of bounding box of OCR_ResSpd", 
-                "OCR_TissueIndex:prefix": "text in bounding box of OCR_TissueIndex starts with this", 
-                "OCR_TissueIndex:type": "contents minus prefix of bounding box of OCR_TissueIndex should be of this type", 
-                "OCR_TissueIndex:xywh": "x0;y0;width;height of bounding box of OCR_TissueIndex", 
                 "auto_suffix": "add a probename as suffix to all results (True)", 
+                "ocr_regions": {
+                    "OCR_DynRange": {
+                        "prefix": "text in bounding box of OCR_DynRange starts with this", 
+                        "type": "contents minus prefix of bounding box of OCR_DynRange should be of this type", 
+                        "xywh": "x0;y0;width;height of bounding box of OCR_DynRange"
+                    }, 
+                    "OCR_FrameRate": {
+                        "suffix": "text in bounding box of OCR_FrameRate starts with this", 
+                        "type": "contents minus prefix of bounding box of OCR_FrameRate should be of this type", 
+                        "xywh": "x0;y0;width;height of bounding box of OCR_FrameRate"
+                    }, 
+                    "OCR_Gain": {
+                        "type": "contents minus prefix of bounding box of OCR_Gain should be of this type", 
+                        "xywh": "x0;y0;width;height of bounding box of OCR_Gain"
+                    }, 
+                    "OCR_LUT": {
+                        "type": "contents minus prefix of bounding box of OCR_LUT should be of this type", 
+                        "xywh": "x0;y0;width;height of bounding box of OCR_LUT"
+                    }, 
+                    "OCR_MechIndex": {
+                        "prefix": "text in bounding box of OCR_MechIndex starts with this", 
+                        "type": "contents minus prefix of bounding box of OCR_MechIndex should be of this type", 
+                        "xywh": "x0;y0;width;height of bounding box of OCR_MechIndex"
+                    }, 
+                    "OCR_PenResGen": {
+                        "type": "contents minus prefix of bounding box of OCR_PenResGen should be of this type", 
+                        "xywh": "x0;y0;width;height of bounding box of OCR_PenResGen"
+                    }, 
+                    "OCR_Persistence": {
+                        "prefix": "text in bounding box of OCR_Persistence starts with this", 
+                        "type": "contents minus prefix of bounding box of OCR_Persistence should be of this type", 
+                        "xywh": "x0;y0;width;height of bounding box of OCR_Persistence"
+                    }, 
+                    "OCR_ResSpd": {
+                        "type": "contents minus prefix of bounding box of OCR_ResSpd should be of this type", 
+                        "xywh": "x0;y0;width;height of bounding box of OCR_ResSpd"
+                    }, 
+                    "OCR_TissueIndex": {
+                        "prefix": "text in bounding box of OCR_TissueIndex starts with this", 
+                        "type": "contents minus prefix of bounding box of OCR_TissueIndex should be of this type", 
+                        "xywh": "x0;y0;width;height of bounding box of OCR_TissueIndex"
+                    }
+                }, 
                 "ocr_threshold": "threshold on pixel values to remove background gradient (0)", 
                 "ocr_zoom": "zoom factor before ocr analysis (10)"
             }

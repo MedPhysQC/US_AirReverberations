@@ -20,6 +20,8 @@
 #
 #
 # Changelog:
+#   20180913: new format of config for OCR: ocr_regions = {name: {prefix:, suffix:, type:, xywh}}; 
+#             tesseract wants black text on white
 #   20170925: distinquish params for actions
 #   20170907: Added uni_range_model parameter
 #   20170830: Added rev_bbox and auto_suffix parameters
@@ -42,7 +44,7 @@
 #
 from __future__ import print_function
 
-__version__ = '20170925'
+__version__ = '20180913'
 __author__ = 'aschilham'
 
 import os
@@ -51,7 +53,14 @@ from wad_qc.module import pyWADinput
 from wad_qc.modulelibs import wadwrapper_lib
 
 import numpy as np
-import scipy
+
+import scipy.misc
+# sanity check: we need at least scipy 0.10.1 to avoid problems mixing PIL and Pillow
+scipy_version = [int(v) for v in scipy.__version__ .split('.')]
+if scipy_version[0] == 0:
+    if scipy_version[1]<10 or (scipy_version[1] == 10 and scipy_version[1]<1):
+        raise RuntimeError("scipy version too old. Upgrade scipy to at least 0.10.1")
+
 if not 'MPLCONFIGDIR' in os.environ:
     # using a fixed folder is preferable to a tempdir, because tempdirs are not automatically removed
     os.environ['MPLCONFIGDIR'] = "/tmp/.matplotlib" # if this folder already exists it must be accessible by the owner of WAD_Processor 
@@ -328,25 +337,20 @@ def OCR(data, results, action, idname):
     msg = ''
     values = {}
     # solve ocr params
+    ocr_regions = params.get('ocr_regions',{}) # new format
+
     regions = {}
-    for k,v in params.items():
-        #'OCR_TissueIndex:xywh' = 'x;y;w;h'
-        #'OCR_TissueIndex:prefix' = 'prefix'
-        #'OCR_TissueIndex:suffix' = 'suffix'
-        if k.startswith('OCR_'):
-            split = k.find(':')
-            name = k[:split]
-            stuff = k[split+1:]
-            if not name in regions:
-                regions[name] = {'prefix':'', 'suffix':''}
-            if stuff == 'xywh':
-                regions[name]['xywh'] = [int(p) for p in v.split(';')]
-            elif stuff == 'prefix':
-                regions[name]['prefix'] = v
-            elif stuff == 'suffix':
-                regions[name]['suffix'] = v
-            elif stuff == 'type':
-                regions[name]['type'] = v
+    for ocrname,ocrparams in ocr_regions.items():
+        regions[ocrname] = {'prefix':'', 'suffix':''}
+        for key,val in ocrparams.items():
+            if key == 'xywh':
+                regions[ocrname]['xywh'] = [int(p) for p in val.split(';')]
+            elif key == 'prefix':
+                regions[ocrname]['prefix'] = val
+            elif key == 'suffix':
+                regions[ocrname]['suffix'] = val
+            elif key == 'type':
+                regions[ocrname]['type'] = val
 
     for name, region in regions.items():
         rectrois.append([ (region['xywh'][0],region['xywh'][1]), 
