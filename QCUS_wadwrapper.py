@@ -20,6 +20,7 @@
 # 
 #
 # Changelog:
+#   20200421: Fix some frequent OCR problems
 #   20190426: Fix for matplotlib>3
 #   20180913: new format of config for OCR: ocr_regions = {name: {prefix:, suffix:, type:, xywh}}; 
 #             tesseract wants black text on white
@@ -45,7 +46,7 @@
 #
 from __future__ import print_function
 
-__version__ = '20190426'
+__version__ = '20200421'
 __author__ = 'aschilham'
 
 import os
@@ -327,9 +328,9 @@ def OCR(data, results, action, idname):
 
     # optional parameters
     ocr_options = {}
-    for lab in ['ocr_threshold', 'ocr_zoom']:
+    for lab in ['ocr_threshold', 'ocr_zoom', 'ocr_border']:
         if lab in params:
-            ocr_options[lab] = params[lab]
+            ocr_options[lab] = int(params[lab])
 
     inputfile = data.series_filelist[0]  # give me a [filename]
     qclib,cs = setup_series(inputfile, params, headers_only=False, for_action='ocr')
@@ -374,7 +375,7 @@ def OCR(data, results, action, idname):
             
         else:
             try:
-                value = ocr_lib.txt2type(txt, region['type'], region['prefix'],region['suffix'])
+                value = ocr_lib.txt2type(txt, region['type'], region['prefix'], region['suffix'])
                 if not results is None:
                     if region['type'] == 'float':
                         results.addFloat(uname, value)
@@ -385,9 +386,13 @@ def OCR(data, results, action, idname):
                 else:
                     values[uname] = value
             except:
+                print("error", uname, value)
                 error = True
                 msg += uname + ' '
-
+                im = scipy.misc.toimage(part) 
+                fn = '%s.jpg'%uname
+                im.save(fn)
+                
 
     if results is None:
         return values, error, msg

@@ -14,6 +14,7 @@
             "filters": {}, 
             "params": {
                 "auto_suffix": false, 
+                "ocr_border": 10, 
                 "ocr_regions": {
                     "OCR_DynRange": {
                         "prefix": "R", 
@@ -58,7 +59,7 @@
                     }
                 }, 
                 "ocr_threshold": 0, 
-                "ocr_zoom": 10
+                "ocr_zoom": 3
             }
         }, 
         "qc_series": {
@@ -95,7 +96,7 @@
             "  If \"OCR_probeID\" is specified, OCR will be used to find an identifier for values, info from the dicom headers is used", 
             "\n"
         ], 
-        "version": "20170907"
+        "version": "20200421"
     }, 
     "info": {
         "acqdatetime": {
@@ -109,6 +110,7 @@
         "ocr_series": {
             "params": {
                 "auto_suffix": "add a probename as suffix to all results (True)", 
+                "ocr_border": "add extra border around text in ROI before ocr analysis (10)", 
                 "ocr_regions": {
                     "OCR_DynRange": {
                         "prefix": "text in bounding box of OCR_DynRange starts with this", 

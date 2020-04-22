@@ -14,6 +14,7 @@
             "filters": {}, 
             "params": {
                 "auto_suffix": false, 
+                "ocr_border": 0, 
                 "ocr_regions": {
                     "OCR_DynRange": {
                         "type": "float", 
@@ -108,6 +109,7 @@
         "ocr_series": {
             "params": {
                 "auto_suffix": "add a probename as suffix to all results (True)", 
+                "ocr_border": "add extra border around text in ROI before ocr analysis (10)", 
                 "ocr_regions": {
                     "OCR_DynRange": {
                         "type": "contents minus prefix of bounding box of OCR_DynRange should be of this type", 
