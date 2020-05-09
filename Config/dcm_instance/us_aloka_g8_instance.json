@@ -1,106 +1,106 @@
 {
     "actions": {
         "acqdatetime": {
-            "filters": {}, 
+            "filters": {},
             "params": {}
-        }, 
+        },
         "header_series": {
-            "filters": {}, 
+            "filters": {},
             "params": {
                 "auto_suffix": false
             }
-        }, 
+        },
         "ocr_series": {
-            "filters": {}, 
+            "filters": {},
             "params": {
-                "auto_suffix": false, 
+                "auto_suffix": false,
                 "ocr_regions": {
                     "OCR_probeID": {
-                        "type": "string", 
+                        "type": "string",
                         "xywh": "676;167;34;15"
                     }
-                }, 
-                "ocr_threshold": 80, 
-                "ocr_zoom": 2, 
+                },
+                "ocr_threshold": 80,
+                "ocr_zoom": 2,
                 "rgbchannel": "B"
             }
-        }, 
+        },
         "qc_series": {
-            "filters": {}, 
+            "filters": {},
             "params": {
-                "auto_suffix": false, 
-                "cluster_fminsize": 5, 
-                "cluster_mode": "all_middle", 
-                "fitcircle_frac": 1, 
-                "hor_offset": 5, 
-                "rev_bbox": "223;547;139;524", 
-                "rgbchannel": "B", 
-                "sen_delta": 0.2, 
-                "sen_filter": 5, 
-                "signal_thresh": 25, 
-                "uni_delta": 0.3, 
-                "uni_depth": 5, 
-                "uni_filter": 5, 
-                "uni_start": 2, 
+                "auto_suffix": false,
+                "cluster_fminsize": 5,
+                "cluster_mode": "all_middle",
+                "fitcircle_frac": 1,
+                "hor_offset": 5,
+                "rev_bbox": "223;547;139;524",
+                "rgbchannel": "B",
+                "sen_delta": 0.2,
+                "sen_filter": 5,
+                "signal_thresh": 25,
+                "uni_delta": 0.3,
+                "uni_depth": 5,
+                "uni_filter": 5,
+                "uni_start": 2,
                 "ver_offset": 1
             }
         }
-    }, 
-    "cfgformat": "20180910", 
+    },
+    "cfgformat": "20180910",
     "comments": {
-        "author": "Pepijn van Horssen, VUmc", 
-        "creator": "generate_config_json.py version 20180912", 
-        "description": "US/AirReverberations for ALOKA G8 C15", 
+        "author": "Pepijn van Horssen, VUmc",
+        "creator": "generate_config_json.py version 20180912",
+        "description": "US/AirReverberations for ALOKA G8 C15",
         "usage": [
-            "  \"OCR_xxx\": \"xywh\": \"10;30;50;25\" # x;y;width;height of bounding box of OCR_xxx", 
-            "  \"OCR_xxx\": \"prefix\": \"TI\" # text in bounding box of OCR_xxx starts with this and this should be stripped", 
-            "  \"OCR_xxx\": \"suffix\": \"mm\" # text in bounding box of OCR_xxx ends with this and this should be stripped", 
-            "  \"OCR_xxx\": \"type\": \"float\" # after stripping prefix and suffix, text should be converted to this data type", 
-            "\n", 
-            "  If \"OCR_probeID\" is specified, OCR will be used to find an identifier for values, info from the dicom headers is used", 
+            "  \"OCR_xxx\": \"xywh\": \"10;30;50;25\" # x;y;width;height of bounding box of OCR_xxx",
+            "  \"OCR_xxx\": \"prefix\": \"TI\" # text in bounding box of OCR_xxx starts with this and this should be stripped",
+            "  \"OCR_xxx\": \"suffix\": \"mm\" # text in bounding box of OCR_xxx ends with this and this should be stripped",
+            "  \"OCR_xxx\": \"type\": \"float\" # after stripping prefix and suffix, text should be converted to this data type",
+            "\n",
+            "  If \"OCR_probeID\" is specified, OCR will be used to find an identifier for values, info from the dicom headers is used",
             "\n"
-        ], 
+        ],
         "version": "20180328"
-    }, 
+    },
     "info": {
         "acqdatetime": {
             "params": {}
-        }, 
+        },
         "header_series": {
             "params": {
                 "auto_suffix": "add a probename as suffix to all results (True)"
             }
-        }, 
+        },
         "ocr_series": {
             "params": {
-                "auto_suffix": "add a probename as suffix to all results (True)", 
+                "auto_suffix": "add a probename as suffix to all results (True)",
                 "ocr_regions": {
                     "OCR_probeID": {
-                        "type": "contents of bounding box of OCR_probeID should be of this type", 
+                        "type": "contents of bounding box of OCR_probeID should be of this type",
                         "xywh": "bounding box of probeID. If OCR_probeID is specified, this will be used as identifier for values, else from dicom headers"
                     }
-                }, 
-                "ocr_threshold": "threshold on pixel values to remove background gradient (0)", 
-                "ocr_zoom": "zoom factor before ocr analysis (10)", 
+                },
+                "ocr_threshold": "threshold on pixel values to remove background gradient (0)",
+                "ocr_zoom": "zoom factor before ocr analysis (10)",
                 "rgbchannel": "use this R-G-B channel (B)"
             }
-        }, 
+        },
         "qc_series": {
             "params": {
-                "auto_suffix": "add a probename as suffix to all results (True)", 
-                "cluster_fminsize": "ignore clusters smaller than imwidth*imheight/fminsize", 
-                "cluster_mode": "mode of connected components analysis; either all_middle (def) or largest_only", 
-                "fitcircle_frac": "use only this central fraction for circle fitting", 
-                "hor_offset": "default lines to exclude from left and right when making profiles (10)", 
-                "rev_bbox": "restrict reverberation pattern to bounding box xmin;xmax;ymin;ymax in px", 
-                "rgbchannel": "use this R-G-B channel (B)", 
-                "sen_delta": "a peak in sensitivity profile must be at least <fdelta>*(max-noise)", 
-                "sen_filter": "running average of this width for sensitivity data", 
-                "signal_thresh": "threshold on pixelvalues for reverberation patterns; use>0 for noisy data (0)", 
-                "uni_delta": "a dip in normalized reverb pattern must be at least <delta>", 
-                "uni_depth": "depth in mm of size of ROI for reverb pattern analysis from top of profile. (5)", 
-                "uni_filter": "running average of this width before peak detection", 
-                "uni_start": "offset in mm to start of ROI for reverb pattern analysis from top of profile. (2)", 
+                "auto_suffix": "add a probename as suffix to all results (True)",
+                "cluster_fminsize": "ignore clusters smaller than imwidth*imheight/fminsize",
+                "cluster_mode": "mode of connected components analysis; either all_middle (def) or largest_only",
+                "fitcircle_frac": "use only this central fraction for circle fitting",
+                "hor_offset": "default lines to exclude from left and right when making profiles (10)",
+                "rev_bbox": "restrict reverberation pattern to bounding box xmin;xmax;ymin;ymax in px",
+                "rgbchannel": "use this R-G-B channel (B)",
+                "sen_delta": "a peak in sensitivity profile must be at least <fdelta>*(max-noise)",
+                "sen_filter": "running average of this width for sensitivity data",
+                "signal_thresh": "threshold on pixelvalues for reverberation patterns; use>0 for noisy data (0)",
+                "uni_delta": "a dip in normalized reverb pattern must be at least <delta>",
+                "uni_depth": "depth in mm of size of ROI for reverb pattern analysis from top of profile. (5)",
+                "uni_filter": "running average of this width before peak detection",
+                "uni_start": "offset in mm to start of ROI for reverb pattern analysis from top of profile. (2)",
                 "ver_offset": "default lines to exclude from top and bottom when making profiles (10)"
             }
         }

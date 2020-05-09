@@ -11,7 +11,6 @@
 # 
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-from __future__ import print_function
 
 """
 Analysis of reverberations in Air pattern.
@@ -41,6 +40,7 @@ Warning: THIS MODULE EXPECTS PYQTGRAPH DATA: X AND Y ARE TRANSPOSED!
 TODO:
     o Maybe put hard threshold on peak value for uniformity (is normalized, so why not?!)
 Changelog:
+    20200508: dropping support for python2; dropping support for WAD-QC 1; toimage no longer exists in scipy.misc
     20180731: fix error ValueError: assignment destination is read-only for work[cs.pixeldataIn ==0] = 1
     20170912: tried sensitivity profile analysis (per column, calculate depth relative to accepted depth; 
               then calculate COV skew kurt); does not help; removed again.
@@ -73,7 +73,7 @@ Changelog:
     20150416: Sensitivity analysis and uniformity analysis
     20150410: Initial version
 """
-__version__ = '20180731'
+__version__ = '20200508'
 __author__ = 'aschilham, pvanhorsen'
 
 import copy
@@ -94,18 +94,26 @@ except ImportError:
 from PIL import Image # image from pillow is needed
 from PIL import ImageDraw # imagedraw from pillow is needed, not pil
 
-# First try if we are running wad1.0, since in wad2 libs are installed systemwide
+LOCALIMPORT = False
 try: 
     # try local folder
     import wadwrapper_lib
+    LOCALIMPORT = True
 except ImportError:
-    # try pyWADlib from plugin.py.zip
-    try: 
-        from pyWADLib import wadwrapper_lib
+    # try wad2.0 from system package wad_qc
+    from wad_qc.modulelibs import wadwrapper_lib
 
-    except ImportError: 
-        # wad1.0 solutions failed, try wad2.0 from system package wad_qc
-        from wad_qc.modulelibs import wadwrapper_lib
+try:
+    from scipy.misc import toimage
+except (ImportError, AttributeError) as e:
+    try:
+        if LOCALIMPORT:
+            from wadwrapper_lib import toimage as toimage
+        else:
+            from wad_qc.modulelibs.wadwrapper_lib import toimage as toimage
+    except (ImportError, AttributeError) as e:
+        msg = "Function 'toimage' cannot be found. Either downgrade scipy or upgrade WAD-QC."
+        raise AttributeError("{}: {}".format(msg, e))
 
 class USStruct:
     def __init__ (self, dcmInfile, pixeldataIn, dicomMode):
@@ -1060,7 +1068,7 @@ class US_QC:
             # first the base image
             work = np.array(cs.pixeldataIn)
             work[cs.pixeldataIn ==0] = 1
-            im = scipy.misc.toimage(work.transpose(),low=1, pal=pal) # MODULE EXPECTS PYQTGRAPH DATA: X AND Y ARE TRANSPOSED!
+            im = toimage(work.transpose(),low=1, pal=pal) # MODULE EXPECTS PYQTGRAPH DATA: X AND Y ARE TRANSPOSED!
 
             # add box around isolated reverb pattern
             minx = min([x for x,y in [cs.rev_minx, cs.rev_miny, cs.rev_maxx, cs.rev_maxy]])
